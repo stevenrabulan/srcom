@@ -35,14 +35,25 @@ npm run dev
 ```
 Open [http://localhost:3000](http://localhost:3000)
 
-## Building for Siteground
+## Deployment
 
-### 1. Build static export
+This site is automatically deployed to SiteGround via a GitHub Action whenever changes are pushed to the main branch. 
+
+You can view the deployment workflows here: [GitHub Actions](https://github.com/stevenrabulan/stevenrabulan/actions)
+
+**Important:** After a successful deployment, the only thing required is to flush the dynamic cache at this URL: 
+[Flush SiteGround Dynamic Cache](https://tools.siteground.com/cacher?siteId=TFEvMmEzc05KUT09)
+
+### Manual Deploy
+
+If you need to deploy manually:
+
+#### 1. Build static export
 ```bash
 npm run build
 ```
 
-### 2. Deploy to Siteground
+#### 2. Deploy to Siteground
 Upload the entire contents of the `out/` folder to your Siteground `public_html` folder via:
 - File Manager in Site Tools
 - FTP/SFTP
