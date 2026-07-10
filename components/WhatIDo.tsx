@@ -14,7 +14,7 @@ const services = [
     title: "DJ & produce remixes",
     description: "I curate the best hip-hop and R&B remixes on the internet and upload DJ sets to",
     links: [
-      { text: "Soundcloud", href: "https://soundcloud.com/djsteeeve" },
+      { text: "Soundcloud", href: "https://soundcloud.com/steve-rabulan" },
       { text: "YouTube", href: "https://youtube.com/@djsteeeve" },
     ],
   },

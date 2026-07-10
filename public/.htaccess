@@ -3,7 +3,7 @@ RewriteEngine On
 
 # Short URL Redirects (301 Permanent)
 RewriteRule ^youtube/?$ https://youtube.com/@djsteeeve [R=301,L]
-RewriteRule ^soundcloud/?$ https://soundcloud.com/djsteeeve [R=301,L]
+RewriteRule ^soundcloud/?$ https://soundcloud.com/steve-rabulan [R=301,L]
 RewriteRule ^instagram/?$ https://instagram.com/djsteeeve [R=301,L]
 RewriteRule ^linkedin/?$ https://linkedin.com/in/stevenrabulan [R=301,L]
 
