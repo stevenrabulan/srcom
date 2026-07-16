@@ -59,9 +59,16 @@ services, other industries — but build single-tenant-and-tidy for now.
      movable to) Cloudflare, free Email Routing → Worker is the cleanest
      sub-60s push path (SPEC §5.1).
    Either way, Blake should stay CC'd on raw RX notifications during the PoC.
-2. **A2P 10DLC registration inputs** *(longest lead time — days to ~2 weeks;
-   ask first)*: Wilder Realty legal entity name, EIN, business address,
-   website. Needed to register the new Quo number for automated texting.
+2. **A2P 10DLC registration inputs** *(longest lead time — ask first)*:
+   Wilder Realty legal name **exactly as on IRS records** (best: a copy of the
+   CP-575/EIN letter — name mismatch is the top rejection cause), EIN, complete
+   business address, website. Registration happens **inside Quo** ("Trust"
+   settings; Quo submits to The Campaign Registry): ~10–15 min form, approval
+   typically 5–7 business days, $19.50 one-time + $1.50/mo. Form also asks for
+   sample messages (use Blake's openers) and opt-in description ("consumer
+   requested an agent via ReferralExchange and consented to contact"). Register
+   the brand as Wilder Realty (Blake's EIN) even though Steven owns the
+   workspace. Per-provider — no prior registration carries over.
 3. **Opener wording — city templating**: buyer template hardcodes "Austin
    area" but sample lead was Marble Falls. OK to substitute the lead's city
    from the subject line ("…buying a home in the Marble Falls area…")?
