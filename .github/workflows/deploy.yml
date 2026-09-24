@@ -19,6 +19,24 @@ jobs:
           node-version: 20
           cache: npm
 
+      # @stevenrabulan/design-system is a private repo, so npm needs the
+      # read-only deploy key before it can clone it over SSH.
+      - name: Authorize private design-system dependency
+        env:
+          DEPLOY_KEY: ${{ secrets.DESIGN_SYSTEM_DEPLOY_KEY }}
+        run: |
+          set -euo pipefail
+          if [ -z "${DEPLOY_KEY:-}" ]; then
+            echo "DESIGN_SYSTEM_DEPLOY_KEY is not set. npm ci cannot install @stevenrabulan/design-system." >&2
+            exit 1
+          fi
+          mkdir -p ~/.ssh
+          printf '%s\n' "$DEPLOY_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -t ed25519 github.com >> ~/.ssh/known_hosts
+          ssh -o BatchMode=yes -T git@github.com 2>&1 | grep -q "successfully authenticated" \
+            || { echo "Deploy key rejected by GitHub." >&2; exit 1; }
+
       - name: Install dependencies
         run: npm ci
 
