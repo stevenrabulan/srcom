@@ -34,8 +34,13 @@ jobs:
           printf '%s\n' "$DEPLOY_KEY" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan -t ed25519 github.com >> ~/.ssh/known_hosts
-          ssh -o BatchMode=yes -T git@github.com 2>&1 | grep -q "successfully authenticated" \
-            || { echo "Deploy key rejected by GitHub." >&2; exit 1; }
+          # ssh -T exits 1 even on success (GitHub gives no shell), so capture
+          # the output instead of piping it: pipefail would fail the check.
+          auth_output=$(ssh -o BatchMode=yes -T git@github.com 2>&1 || true)
+          if ! grep -q "successfully authenticated" <<<"$auth_output"; then
+            echo "Deploy key rejected by GitHub: $auth_output" >&2
+            exit 1
+          fi
 
       - name: Install dependencies
         run: npm ci
