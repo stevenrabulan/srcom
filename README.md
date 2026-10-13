@@ -39,7 +39,7 @@ Open [http://localhost:3000](http://localhost:3000)
 
 This site is automatically deployed to SiteGround via a GitHub Action whenever changes are pushed to the main branch. 
 
-You can view the deployment workflows here: [GitHub Actions](https://github.com/stevenrabulan/stevenrabulan/actions)
+You can view the deployment workflows here: [GitHub Actions](https://github.com/stevenrabulan/srcom/actions)
 
 **Important:** After a successful deployment, the only thing required is to flush the dynamic cache at this URL: 
 [Flush SiteGround Dynamic Cache](https://tools.siteground.com/cacher?siteId=TFEvMmEzc05KUT09)
