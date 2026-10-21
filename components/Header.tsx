@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import posthog from "posthog-js";
+import { portfolioLogger } from "@/lib/posthog-logger";
 
 export default function Header() {
   return (
@@ -9,7 +11,14 @@ export default function Header() {
         <Link href="/" className="text-white text-xl font-bold font-heading opacity-75 hover:opacity-100 hover:scale-105 transition">
           Steven Rabulan
         </Link>
-        <a href="mailto:steven.rabulan@gmail.com" className="bg-primary hover:bg-primary-hover text-white font-bold px-6 py-3 rounded-lg transition-colors uppercase tracking-wide text-sm font-heading">
+        <a
+          href="mailto:steven.rabulan@gmail.com"
+          onClick={() => {
+            posthog.capture("contact_cta_clicked", { placement: "header" });
+            portfolioLogger.contactCtaClicked("header");
+          }}
+          className="bg-primary hover:bg-primary-hover text-white font-bold px-6 py-3 rounded-lg transition-colors uppercase tracking-wide text-sm font-heading"
+        >
           Shoot Me a Message
         </a>
       </div>

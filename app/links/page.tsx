@@ -41,7 +41,7 @@ export default function LinksPage() {
       {/* Links */}
       <div className="w-full max-w-md space-y-4">
         {links.map((link) => (
-          <LinkButton key={link.label} href={link.href} icon={link.icon} label={link.label} variant={link.variant} />
+          <LinkButton key={link.label} href={link.href} icon={<link.icon size={20} />} label={link.label} variant={link.variant} />
         ))}
 
         {/* See More Link */}

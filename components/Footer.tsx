@@ -1,5 +1,9 @@
+"use client";
+
 import Link from 'next/link';
 import { Instagram, Linkedin } from 'lucide-react';
+import posthog from "posthog-js";
+import { portfolioLogger } from "@/lib/posthog-logger";
 
 const navLinks = [
   { text: 'Contact Me', href: 'mailto:steven.rabulan@gmail.com' },
@@ -25,6 +29,10 @@ export default function Footer() {
             <Link
               key={link.text}
               href={link.href}
+              onClick={link.text === 'Contact Me' ? () => {
+                posthog.capture("contact_cta_clicked", { placement: "footer" });
+                portfolioLogger.contactCtaClicked("footer");
+              } : undefined}
               className="text-gray-400 hover:text-white uppercase text-sm tracking-wider transition-colors"
             >
               {link.text}
@@ -39,6 +47,10 @@ export default function Footer() {
               href={social.href}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => {
+                posthog.capture("social_profile_clicked", { platform: social.label });
+                portfolioLogger.socialProfileClicked(social.label as "Instagram" | "LinkedIn");
+              }}
               className="text-gray-400 hover:text-white transition-colors p-2"
               aria-label={social.label}
             >
