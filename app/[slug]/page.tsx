@@ -8,15 +8,20 @@ export function generateStaticParams() {
   }));
 }
 
-export default function RedirectPage({ params }: { params: { slug: string } }) {
-  const target = redirects[params.slug];
+export default async function RedirectPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const target = redirects[slug];
   
   if (!target) {
     notFound();
   }
 
   // Format a nice fallback text based on the slug
-  const fallbackText = `Redirecting to ${params.slug.charAt(0).toUpperCase() + params.slug.slice(1)}...`;
+  const fallbackText = `Redirecting to ${slug.charAt(0).toUpperCase() + slug.slice(1)}...`;
 
   return (
     <>
