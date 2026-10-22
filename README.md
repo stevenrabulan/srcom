@@ -41,7 +41,9 @@ This site is automatically deployed to SiteGround via a GitHub Action whenever c
 
 You can view the deployment workflows here: [GitHub Actions](https://github.com/stevenrabulan/srcom/actions)
 
-**Important:** After a successful deployment, the only thing required is to flush the dynamic cache at this URL: 
+Changes are live as soon as the action finishes. `public/.htaccess` sends `Cache-Control: no-cache` on HTML, so SiteGround's Dynamic Cache and CDN don't serve stale pages.
+
+If a page still looks stale, check its headers with `curl -sI https://stevenrabulan.com/` (expect `cache-control: no-cache`), then flush manually as a fallback: 
 [Flush SiteGround Dynamic Cache](https://tools.siteground.com/cacher?siteId=TFEvMmEzc05KUT09)
 
 ### Manual Deploy
@@ -62,7 +64,7 @@ Upload the entire contents of the `out/` folder to your Siteground `public_html`
 The `.htaccess` file handles:
 - Short URL redirects (`/youtube` → YouTube, etc.)
 - SPA routing for client-side navigation
-- Caching and compression
+- Caching (`no-cache` on HTML, long-lived static assets) and compression
 - Security headers
 
 ## Project Structure

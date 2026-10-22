@@ -22,6 +22,12 @@ ErrorDocument 404 /404.html
   Header set X-XSS-Protection "1; mode=block"
 </IfModule>
 
+# Keep HTML out of SiteGround's Dynamic Cache and CDN so deploys show up
+# without a manual flush. Browsers still revalidate cheaply via Last-Modified.
+<IfModule mod_headers.c>
+  Header set Cache-Control "no-cache" "expr=%{CONTENT_TYPE} =~ m#^text/html#"
+</IfModule>
+
 # Enable compression
 <IfModule mod_deflate.c>
   AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
